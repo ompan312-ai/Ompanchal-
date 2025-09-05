@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All in One Conversion Tool</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      text-align: center;
+      color: #fff;
+      margin: 20px 0;
+      text-shadow: 1px 1px 4px #000;
+    }
+    .converter-box {
+      background: #fff;
+      max-width: 500px;
+      margin: 30px auto;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    h2 { color: #2575fc; }
+    select, input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background: #2575fc;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover { background: #6a11cb; }
+    .result {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #444;
+      min-height: 24px;
+    }
+    .warn { color: #d9534f; font-weight: 600; }
+    footer {
+      margin-top: 40px;
+      padding: 15px;
+      background: #222;
+      color: #fff;
+      font-size: 14px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>✨ All-in-One Conversion Tool ✨</h1>
+
+  <!-- Length -->
+  <div class="converter-box">
+    <h2>Length Conversion</h2>
+    <input type="number" id="lenValue" placeholder="Enter value" />
+    <select id="lenFrom">
+      <option>Meter</option><option>Kilometer</option><option>Centimeter</option><option>Millimeter</option>
+      <option>Mile</option><option>Yard</option><option>Foot</option><option>Inch</option>
+    </select>
+    <select id="lenTo">
+      <option>Kilometer</option><option>Meter</option><option>Centimeter</option><option>Millimeter</option>
+      <option>Mile</option><option>Yard</option><option>Foot</option><option>Inch</option>
+    </select>
+    <button onclick="convertLength()">Convert</button>
+    <div class="result" id="lenResult"></div>
+  </div>
+
+  <!-- Weight -->
+  <div class="converter-box">
+    <h2>Weight Conversion</h2>
+    <input type="number" id="wtValue" placeholder="Enter value" />
+    <select id="wtFrom">
+      <option>Kilogram</option><option>Gram</option><option>Milligram</option><option>Pound</option><option>Ounce</option>
+    </select>
+    <select id="wtTo">
+      <option>Gram</option><option>Kilogram</option><option>Milligram</option><option>Pound</option><option>Ounce</option>
+    </select>
+    <button onclick="convertWeight()">Convert</button>
+    <div class="result" id="wtResult"></div>
+  </div>
+
+  <!-- Temperature -->
+  <div class="converter-box">
+    <h2>Temperature Conversion</h2>
+    <input type="number" id="tempValue" placeholder="Enter value" />
+    <select id="tempFrom">
+      <option>Celsius</option><option>Fahrenheit</option><option>Kelvin</option>
+    </select>
+    <select id="tempTo">
+      <option>Fahrenheit</option><option>Celsius</option><option>Kelvin</option>
+    </select>
+    <button onclick="convertTemperature()">Convert</button>
+    <div class="result" id="tempResult"></div>
+  </div>
+
+  <!-- Time -->
+  <div class="converter-box">
+    <h2>Time Conversion</h2>
+    <input type="number" id="timeValue" placeholder="Enter value" />
+    <select id="timeFrom">
+      <option>Second</option><option>Minute</option><option>Hour</option><option>Day</option>
+    </select>
+    <select id="timeTo">
+      <option>Minute</option><option>Second</option><option>Hour</option><option>Day</option>
+    </select>
+    <button onclick="convertTime()">Convert</button>
+    <div class="result" id="timeResult"></div>
+  </div>
+
+  <!-- Speed -->
+  <div class="converter-box">
+    <h2>Speed Conversion</h2>
+    <input type="number" id="spdValue" placeholder="Enter value" />
+    <select id="spdFrom">
+      <option>m/s</option><option>km/h</option><option>mph</option>
+    </select>
+    <select id="spdTo">
+      <option>km/h</option><option>m/s</option><option>mph</option>
+    </select>
+    <button onclick="convertSpeed()">Convert</button>
+    <div class="result" id="spdResult"></div>
+  </div>
+
+  <footer>
+    © 2025 Om Panchal | All Rights Reserved
+  </footer>
+
+  <script>
+    // Helper: show warning if value missing
+    function requireNumber(val, el) {
+      if (isNaN(val)) {
+        el.innerHTML = '<span class="warn">⚠️ Please enter a valid number</span>';
+        return false;
+      }
+      return true;
+    }
+
+    // Length
+    function convertLength() {
+      const v = parseFloat(document.getElementById("lenValue").value);
+      const f = document.getElementById("lenFrom").value;
+      const t = document.getElementById("lenTo").value;
+      const out = document.getElementById("lenResult");
+      if (!requireNumber(v, out)) return;
+      const factors = {
+        Meter:1, Kilometer:1000, Centimeter:0.01, Millimeter:0.001,
+        Mile:1609.34, Yard:0.9144, Foot:0.3048, Inch:0.0254
+      };
+      out.innerHTML = `${v} ${f} = ${(v*factors[f]/factors[t]).toFixed(4)} ${t}`;
+    }
+
+    // Weight
+    function convertWeight() {
+      const v = parseFloat(document.getElementById("wtValue").value);
+      const f = document.getElementById("wtFrom").value;
+      const t = document.getElementById("wtTo").value;
+      const out = document.getElementById("wtResult");
+      if (!requireNumber(v, out)) return;
+      const factors = {
+        Kilogram:1, Gram:0.001, Milligram:0.000001, Pound:0.453592, Ounce:0.0283495
+      };
+      out.innerHTML = `${v} ${f} = ${(v*factors[f]/factors[t]).toFixed(4)} ${t}`;
+    }
+
+    // Temperature
+    function convertTemperature() {
+      const v = parseFloat(document.getElementById("tempValue").value);
+      const f = document.getElementById("tempFrom").value;
+      const t = document.getElementById("tempTo").value;
+      const out = document.getElementById("tempResult");
+      if (!requireNumber(v, out)) return;
+      let r = 0;
+      if (f === t) r = v;
+      else if (f === "Celsius" && t === "Fahrenheit") r = (v*9/5 + 32);
+      else if (f === "Celsius" && t === "Kelvin") r = (v + 273.15);
+      else if (f === "Fahrenheit" && t === "Celsius") r = ((v - 32) * 5/9);
+      else if (f === "Fahrenheit" && t === "Kelvin") r = ((v - 32) * 5/9 + 273.15);
+      else if (f === "Kelvin" && t === "Celsius") r = (v - 273.15);
+      else if (f === "Kelvin" && t === "Fahrenheit") r = ((v - 273.15) * 9/5 + 32);
+      out.innerHTML = `${v} ${f} = ${r.toFixed(2)} ${t}`;
+    }
+
+    // Time
+    function convertTime() {
+      const v = parseFloat(document.getElementById("timeValue").value);
+      const f = document.getElementById("timeFrom").value;
+      const t = document.getElementById("timeTo").value;
+      const out = document.getElementById("timeResult");
+      if (!requireNumber(v, out)) return;
+      const factors = { Second:1, Minute:60, Hour:3600, Day:86400 };
+      out.innerHTML = `${v} ${f} = ${(v*factors[f]/factors[t]).toFixed(4)} ${t}`;
+    }
+
+    // Speed
+    function convertSpeed() {
+      const v = parseFloat(document.getElementById("spdValue").value);
+      const f = document.getElementById("spdFrom").value;
+      const t = document.getElementById("spdTo").value;
+      const out = document.getElementById("spdResult");
+      if (!requireNumber(v, out)) return;
+      const factors = { "m/s":1, "km/h":0.277778, "mph":0.44704 };
+      out.innerHTML = `${v} ${f} = ${(v*factors[f]/factors[t]).toFixed(4)} ${t}`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Om Panchal | Portfolio</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      font-family:'Segoe UI',Arial,sans-serif;
+      line-height:1.6;
+      background:linear-gradient(135deg,#f9f9f9,#eef3ff);
+      color:#333;
+      scroll-behavior:smooth;
+      position:relative;
+    }
+    
+    
+
+    /* Header */
+    header{
+      background:linear-gradient(135deg,#007BFF,#00c6ff);
+      color:#fff;
+      text-align:center;
+      padding:60px 20px 80px;
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 4px 12px rgba(0,0,0,0.3);
+    }
+    header::after{
+      content:"";
+      position:absolute;
+      bottom:-50px;left:0;width:100%;height:100px;
+      background:#fff;
+      border-radius:50% 50% 0 0;
+    }
+    header h1{
+      margin:0;
+      font-size:2.8rem;
+      letter-spacing:2px;
+      z-index:2;
+      position:relative;
+    }
+    header p{
+      font-size:1.2rem;
+      opacity:0.95;
+      z-index:2;
+      position:relative;
+    }
+
+    /* Navigation */
+    nav{
+      position:sticky;
+      top:0;
+      background: linear-gradient(90deg, #ff7e5f, #feb47b, #6a82fb, #fc5c7d);
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      z-index:10;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    nav a{
+      color:#fff;
+      padding:14px 20px;
+      text-decoration:none;
+      font-weight:600;
+      transition:all 0.3s ease;
+      position:relative;
+    }
+    nav a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:5px;
+      width:0;
+      height:2px;
+      background:#fff;
+      transition:width 0.3s ease;
+    }
+    nav a:hover::after{
+      width:100%;
+    }
+    nav a:hover{
+      color:#000;
+    }
+
+    /* Sections */
+    section{
+      padding:70px 20px;
+      max-width:1100px;
+      margin:auto;
+      opacity:0;
+      transform:translateY(50px);
+      transition:all 1s ease;
+    }
+    section.visible{opacity:1;transform:translateY(0);}
+    h2{
+      text-align:center;
+      margin-bottom:30px;
+      font-size:2.2rem;
+      color:#222;
+      position:relative;
+    }
+    h2::after{
+      content:"";
+      width:70px;height:3px;
+      background:#f39c12;
+      display:block;
+      margin:10px auto;
+      border-radius:2px;
+    }
+
+    /* Cards */
+    .services,.tools{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:30px;
+    }
+    .card{
+      background:#fff;
+      padding:28px;
+      border-radius:18px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.1);
+      transition:transform 0.4s,box-shadow 0.4s;
+    }
+    .card:hover{
+      transform:translateY(-10px);
+      box-shadow:0 12px 25px rgba(0,0,0,0.2);
+    }
+    .card h3{margin-bottom:12px;color:#f39c12;}
+    .card p{font-size:1rem;}
+    .card a{
+      display:inline-block;
+      margin-top:18px;
+      padding:10px 18px;
+      background:#f39c12;
+      color:#fff;
+      text-decoration:none;
+      border-radius:10px;
+      font-weight:600;
+      transition:0.3s;
+    }
+    .card a:hover{background:#d35400;}
+
+    /* Contact */
+    form{
+      max-width:500px;
+      margin:auto;
+      background:#fff;
+      padding:28px;
+      border-radius:15px;
+      box-shadow:0 6px 16px rgba(0,0,0,0.1);
+    }
+    form input,form textarea{
+      width:100%;
+      padding:14px;
+      margin:12px 0;
+      border:1px solid #ccc;
+      border-radius:10px;
+      font-size:1rem;
+    }
+    form button{
+      background:#f39c12;
+      color:#fff;
+      padding:12px 22px;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:bold;
+      transition:0.3s;
+    }
+    form button:hover{background:#d35400;}
+
+    /* Disclaimer & Terms */
+    #disclaimer, #terms{
+      background: #fff8e1;
+      padding:40px 20px;
+      border-radius:15px;
+      box-shadow:0 4px 16px rgba(0,0,0,0.08);
+      margin:50px auto;
+    }
+    #disclaimer h2, #terms h2{color:#e67e22;}
+
+    /* Footer */
+    footer{
+      background:linear-gradient(135deg,#007BFF,#00c6ff);
+      color:#fff;
+      text-align:center;
+      padding:22px 0;
+      margin-top:60px;
+      font-size:0.95rem;
+      box-shadow:0 -4px 12px rgba(0,0,0,0.2);
+      position:relative;
+    }
+
+    /* Back to Top */
+    #backToTop{
+      position:fixed;
+      bottom:30px;
+      right:30px;
+      background:#f39c12;
+      color:#fff;
+      padding:12px 16px;
+      border-radius:50px;
+      font-weight:bold;
+      cursor:pointer;
+      display:none;
+      box-shadow:0 4px 12px rgba(0,0,0,0.2);
+      z-index:50;
+      transition:0.3s;
+    }
+    #backToTop:hover{background:#d35400;}
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Om Panchal</h1>
+    <p>Educator | Web Enthusiast | Motivator</p>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#tools">Tools</a>
+    <a href="#contact">Contact</a>
+    <a href="#disclaimer">Disclaimer</a>
+    <a href="#terms">Terms</a>
+  </nav>
+
+  <!-- Home -->
+  <section id="home">
+    <h2>Welcome</h2>
+    <p style="text-align:center;max-width:700px;margin:auto;font-size:1.1rem;">
+      Hello! I’m <b>Om Panchal</b>, passionate about teaching, technology, and motivation.  
+      Explore my portfolio to know more about my work and services.
+    </p>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p style="text-align:center;max-width:800px;margin:auto;font-size:1.05rem;">
+      I am an educator and mentor who helps students learn <b>Basic Computers</b>, <b>Web Design</b>, and also provides <b>Home Tuition</b>.  
+      Along with academics, I share <b>motivational content</b> to inspire people in their personal and professional lives.
+    </p>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <h2>Services</h2>
+    <div class="services">
+      <div class="card">
+        <h3>Home Tuition</h3>
+        <p>Personalized coaching for school and college students.</p>
+        <a href="home-tuition.html">Learn More</a>
+      </div>
+      <div class="card">
+        <h3>Basic Computer</h3>
+        <p>Step-by-step learning of essential computer skills.</p>
+        <a href="basic-computer.html">Learn More</a>
+      </div>
+      <div class="card">
+        <h3>Web Design</h3>
+        <p>Learn HTML, CSS, and design your own websites.</p>
+        <a href="web-design.html">Learn More</a>
+      </div>
+      <div class="card">
+        <h3>Motivation</h3>
+        <p>Inspiring thoughts and guidance for success.</p>
+        <a href="motivational.html">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools -->
+  <section id="tools">
+    <h2>Useful Tools</h2>
+    <div class="tools">
+      <div class="card">
+        <h3>Clock</h3>
+        <p>Check live time on the digital clock.</p>
+        <a href="clock.html">Open</a>
+      </div>
+      <div class="card">
+        <h3>To-Do List</h3>
+        <p>Organize tasks and track progress easily.</p>
+        <a href="todo.html">Open</a>
+      </div>
+      <div class="card">
+        <h3>More Tools</h3>
+        <p>Explore more utilities and learning tools.</p>
+        <a href="tools.html">Explore</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Disclaimer -->
+  <section id="disclaimer">
+    <h2>Disclaimer</h2>
+    <p style="text-align:center;max-width:900px;margin:auto;font-size:1.05rem;">
+      The content on this website is for educational and informational purposes only.  
+      While every effort has been made to ensure accuracy, <b>Om Panchal</b> does not take responsibility 
+      for any errors or omissions. Use the provided tools and resources at your own discretion.
+    </p>
+  </section>
+
+  <!-- Terms & Conditions -->
+  <section id="terms">
+    <h2>Terms & Conditions</h2>
+    <p style="text-align:center;max-width:900px;margin:auto;font-size:1.05rem;">
+      By accessing this website, you agree to the following terms:  
+      <br><br>
+      • The study material and tools provided here are for personal use only. <br>
+      • You may not reproduce, distribute, or use the content for commercial purposes without permission. <br>
+      • We are not liable for any loss, damage, or inconvenience caused by using the information on this site. <br>
+      • External links (if any) are provided for reference; we are not responsible for their content. <br>
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Om Panchal | All Rights Reserved</p>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <div id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'});">↑ Top</div>
+
+  <!-- WhatsApp Integration -->
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      let name = document.getElementById("name").value;
+      let email = document.getElementById("email").value;
+      let message = document.getElementById("message").value;
+      let phoneNumber = "919305957955"; // apna WhatsApp number
+      let whatsappMessage = `Hello, my name is ${name} (${email}). My message is: ${message}`;
+      let url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+      window.open(url, "_blank");
+    });
+
+    // Scroll reveal
+    const sections = document.querySelectorAll("section");
+    const revealOnScroll = () => {
+      const triggerBottom = window.innerHeight * 0.85;
+      sections.forEach(sec => {
+        const secTop = sec.getBoundingClientRect().top;
+        if(secTop < triggerBottom){
+          sec.classList.add("visible");
+        }
+      });
+    };
+    window.addEventListener("scroll", revealOnScroll);
+    window.addEventListener("load", revealOnScroll);
+
+    // Back to top button show/hide
+    const backBtn = document.getElementById("backToTop");
+    window.addEventListener("scroll", () => {
+      if(window.scrollY > 300){
+        backBtn.style.display = "block";
+      } else {
+        backBtn.style.display = "none";
+      }
+    });
+  </script>
+
+</body>
+</html>

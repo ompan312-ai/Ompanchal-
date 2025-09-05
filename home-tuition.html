@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Om Panchal Home Tuition</title>
+  <style>
+    /* General Styling */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9fafc;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #4CAF50, #2e7d32);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 5px;
+    }
+
+    /* Section Card Style */
+    section {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 25px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.8rem;
+      color: #2e7d32;
+      border-left: 6px solid #4CAF50;
+      padding-left: 10px;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+      font-size: 1rem;
+    }
+    th {
+      background: #4CAF50;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background: #f2f2f2;
+    }
+
+    /* Teacher List */
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      padding: 10px;
+      margin: 6px 0;
+      background: #e8f5e9;
+      border-left: 5px solid #4CAF50;
+      border-radius: 6px;
+    }
+
+    /* Form */
+    form input, form textarea, form button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 12px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    form textarea {
+      height: 100px;
+      resize: none;
+    }
+    form button {
+      background: #4CAF50;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    form button:hover {
+      background: #388e3c;
+    }
+
+    /* Contact Buttons */
+    .contact-btn {
+      display: inline-block;
+      padding: 12px 20px;
+      margin: 10px 10px 0 0;
+      background: #2196F3;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .contact-btn:hover {
+      background: #0b7dda;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #2e7d32;
+      color: white;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Om Panchal Home Tuition</h1>
+    <p>Affordable Tuition for Classes 1 to 5</p>
+  </header>
+
+  <!-- Fees Section -->
+  <section>
+    <h2>Fees Structure</h2>
+    <table>
+      <tr>
+        <th>Class</th>
+        <th>Monthly Fees</th>
+      </tr>
+      <tr><td>Class 1</td><td>₹500</td></tr>
+      <tr><td>Class 2</td><td>₹600</td></tr>
+      <tr><td>Class 3</td><td>₹700</td></tr>
+      <tr><td>Class 4</td><td>₹800</td></tr>
+      <tr><td>Class 5</td><td>₹900</td></tr>
+    </table>
+  </section>
+
+  <!-- Teachers Section -->
+  <section>
+    <h2>Our Teachers</h2>
+    <ul>
+      <li>👨‍🏫 Mr. Om Panchal – Mathematics & Science</li>
+      <li>👩‍🏫 Mrs. Seeta Devi – Hindi & English</li>
+      <li>👨‍🏫 Mr. Ramesh Kumar – EVS & Social Studies</li>
+    </ul>
+  </section>
+
+  <!-- Query Form -->
+  <section>
+    <h2>Send Your Query</h2>
+    <form id="queryForm">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="text" id="studentClass" placeholder="Class (1-5)" required>
+      <textarea id="message" placeholder="Your Query" required></textarea>
+      <button type="submit">📩 Send Query via WhatsApp</button>
+    </form>
+  </section>
+
+  <!-- Contact Section -->
+  <section>
+    <h2>Contact Us</h2>
+    <p>If you have any questions, feel free to contact us directly:</p>
+    <a href="tel:+919305957955" class="contact-btn">📞 Call Us</a>
+    <a href="https://wa.me/919305957955?text=Hello%20Sir,%20I%20want%20to%20know%20about%20tuition%20classes." target="_blank" class="contact-btn">💬 WhatsApp Us</a>
+  </section>
+
+  <footer>
+    © 2025 Om Panchal Home Tuition | All Rights Reserved
+  </footer>
+
+  <script>
+    document.getElementById("queryForm").addEventListener("submit", function(e){
+      e.preventDefault();
+
+      let name = document.getElementById("name").value;
+      let studentClass = document.getElementById("studentClass").value;
+      let message = document.getElementById("message").value;
+
+      // Apna WhatsApp Number (91 ke sath India code)
+      let phoneNumber = "919305957955";
+
+      let whatsappMessage = `Hello, my name is ${name}. I want to take admission for Class ${studentClass}. My query is: ${message}`;
+      let url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+      window.open(url, "_blank");
+    });
+  </script>
+
+</body>
+</html>

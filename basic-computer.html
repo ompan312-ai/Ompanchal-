@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Computer Course - Help Foundation</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f2f5;
+    }
+    header {
+      background: linear-gradient(135deg, #007BFF, #00C6FF);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom-left-radius: 40px;
+      border-bottom-right-radius: 40px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    header p {
+      margin: 5px 0 0;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: 30px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    h2 {
+      color: #007BFF;
+      border-left: 5px solid #007BFF;
+      padding-left: 10px;
+      margin-top: 30px;
+    }
+    ul {
+      margin: 15px 0;
+      padding-left: 20px;
+    }
+    li {
+      margin: 8px 0;
+      font-size: 1.05rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      margin: 15px 8px 0 0;
+      background: #007BFF;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #0056b3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    form {
+      margin-top: 20px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    button {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #1e7e34;
+    }
+    footer {
+      text-align: center;
+      background: #007BFF;
+      color: white;
+      padding: 12px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Basic Computer Course</h1>
+    <p>Help Foundation</p>
+  </header>
+
+  <div class="container">
+    <h2>📘 Course Overview</h2>
+    <p>
+      This Basic Computer Course is designed for beginners who want to build strong computer fundamentals. 
+      The course covers computer basics, MS Office, Internet usage, email, and practical exercises.
+    </p>
+
+    <h2>📋 Course Details</h2>
+    <ul>
+      <li><b>Duration:</b> 6 Months</li>
+      <li><b>Fees:</b> ₹1500</li>
+      <li><b>Mode:</b> Classroom + Practical Training</li>
+    </ul>
+
+    <h2>📝 Syllabus Outline</h2>
+    <ul>
+      <li>Introduction to Computers</li>
+      <li>Operating System Basics</li>
+      <li>MS Word, MS Excel, MS PowerPoint</li>
+      <li>Internet & Email</li>
+      <li>Typing Practice</li>
+      <li>Basic Troubleshooting</li>
+    </ul>
+
+    <h2>📄 Download Notes</h2>
+    <a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" 
+       class="btn" target="_blank">Download Sample Notes (PDF)</a>
+
+    <h2>📌 Enroll / Enquiry Form</h2>
+    <form id="enquiryForm">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <input type="text" id="phone" placeholder="Your Mobile Number" required>
+      <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send via WhatsApp</button>
+    </form>
+
+    <a href="index.html" class="btn">⬅ Back to Home</a>
+  </div>
+
+  <footer>
+    <p>© 2025 Help Foundation | Designed by Om Panchal</p>
+  </footer>
+
+  <script>
+    document.getElementById("enquiryForm").addEventListener("submit", function(e){
+      e.preventDefault();
+
+      let name = document.getElementById("name").value;
+      let email = document.getElementById("email").value;
+      let phone = document.getElementById("phone").value;
+      let message = document.getElementById("message").value;
+
+      // Apna WhatsApp number (India ke liye +91 ke saath)
+      let whatsappNumber = "919305957955";
+
+      let whatsappMessage = `Hello, my name is ${name}.
+Email: ${email}
+Phone: ${phone}
+Message: ${message}`;
+
+      let url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+      window.open(url, "_blank");
+    });
+  </script>
+
+</body>
+</html>

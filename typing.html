@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing Practice - Om Panchal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fa;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background: #007BFF;
+      color: white;
+      padding: 15px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #007BFF;
+      margin-bottom: 15px;
+    }
+    #text {
+      font-size: 18px;
+      background: #f1f1f1;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    textarea {
+      width: 100%;
+      height: 120px;
+      font-size: 16px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      outline: none;
+      resize: none;
+    }
+    .results {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    .results span {
+      display: inline-block;
+      min-width: 150px;
+      font-weight: bold;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    footer {
+      text-align: center;
+      background: #007BFF;
+      color: white;
+      padding: 12px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Typing Practice</h1>
+    <p>Improve your typing speed and accuracy</p>
+  </header>
+
+  <div class="container">
+    <h2>Type the following text:</h2>
+    <div id="text">Practice typing to improve your speed and accuracy.</div>
+    
+    <textarea id="input" placeholder="Start typing here..."></textarea>
+
+    <div class="results">
+      <p><span id="speed">Speed: 0 WPM</span> <span id="accuracy">Accuracy: 0%</span></p>
+    </div>
+
+    <button onclick="resetTest()">Reset</button>
+  </div>
+
+  <footer>
+    <p>© 2025 Om Panchal | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    const text = document.getElementById("text").innerText;
+    const input = document.getElementById("input");
+    const speedEl = document.getElementById("speed");
+    const accuracyEl = document.getElementById("accuracy");
+
+    let startTime = null;
+
+    input.addEventListener("input", () => {
+      if (!startTime) startTime = new Date();
+
+      let typed = input.value;
+      let elapsedTime = (new Date() - startTime) / 1000 / 60; // minutes
+      let wordsTyped = typed.trim().split(/\s+/).length;
+      let wpm = Math.round(wordsTyped / elapsedTime);
+
+      // Accuracy
+      let correctChars = 0;
+      for (let i = 0; i < typed.length; i++) {
+        if (typed[i] === text[i]) correctChars++;
+      }
+      let accuracy = Math.round((correctChars / typed.length) * 100) || 0;
+
+      speedEl.innerText = `Speed: ${wpm} WPM`;
+      accuracyEl.innerText = `Accuracy: ${accuracy}%`;
+    });
+
+    function resetTest() {
+      input.value = "";
+      startTime = null;
+      speedEl.innerText = "Speed: 0 WPM";
+      accuracyEl.innerText = "Accuracy: 0%";
+    }
+  </script>
+
+</body>
+</html>

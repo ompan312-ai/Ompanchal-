@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stylish Digital & Analog Clock</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.3);
+      font-size: 2rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .clock {
+      font-size: 3rem;
+      margin: 20px 0;
+      padding: 20px;
+      background: rgba(0,0,0,0.4);
+      display: inline-block;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #000;
+    }
+    .date {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      font-style: italic;
+    }
+    section {
+      margin: 30px auto;
+      width: 90%;
+      max-width: 500px;
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    h2 {
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      border-bottom: 2px solid white;
+      padding-bottom: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 8px;
+      background: #ff9800;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #e65100;
+      transform: scale(1.1);
+    }
+    #quote {
+      margin-top: 20px;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: #ffd700;
+    }
+    /* Analog Clock */
+    .analog {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      border: 8px solid white;
+      border-radius: 50%;
+      margin: 20px auto;
+      background: rgba(0,0,0,0.3);
+      box-shadow: 0 0 20px rgba(255,255,255,0.5);
+    }
+    .hand {
+      position: absolute;
+      width: 50%;
+      height: 2px;
+      background: #ffeb3b;
+      top: 50%;
+      transform-origin: 100%;
+      transform: rotate(90deg);
+      transition: all 0.05s ease-in-out;
+      box-shadow: 0 0 10px #ffeb3b;
+    }
+    .hour { height: 4px; background: #ff5722; box-shadow: 0 0 10px #ff5722; }
+    .minute { height: 3px; background: #03a9f4; box-shadow: 0 0 10px #03a9f4; }
+    .second { height: 2px; background: #8bc34a; box-shadow: 0 0 10px #8bc34a; }
+  </style>
+</head>
+<body>
+  <header>🕒 Stylish Clock</header>
+
+  <!-- Digital Clock -->
+  <div class="clock" id="clock"></div>
+  <div class="date" id="date"></div>
+
+  <!-- Analog Clock -->
+  <div class="analog">
+    <div class="hand hour" id="hour"></div>
+    <div class="hand minute" id="minute"></div>
+    <div class="hand second" id="second"></div>
+  </div>
+
+  <!-- Timer -->
+  <section>
+    <h2>⏳ Timer</h2>
+    <div id="timer">00:00:00</div>
+    <button onclick="startTimer()">Start</button>
+    <button onclick="stopTimer()">Stop</button>
+    <button onclick="resetTimer()">Reset</button>
+  </section>
+
+  <!-- Stopwatch -->
+  <section>
+    <h2>⏱ Stopwatch</h2>
+    <div id="stopwatch">00:00:00</div>
+    <button onclick="startStopwatch()">Start</button>
+    <button onclick="stopStopwatch()">Stop</button>
+    <button onclick="resetStopwatch()">Reset</button>
+  </section>
+
+  <!-- Motivational Quote -->
+  <section>
+    <h2>🌟 Motivation</h2>
+    <div id="quote">“Time is life, don’t waste it!”</div>
+  </section>
+
+  <script>
+    // Digital Clock
+    function updateClock() {
+      let now = new Date();
+      let time = now.toLocaleTimeString();
+      let date = now.toDateString();
+      document.getElementById("clock").innerText = time;
+      document.getElementById("date").innerText = date;
+
+      // Analog Clock Update
+      const seconds = now.getSeconds();
+      const minutes = now.getMinutes();
+      const hours = now.getHours();
+
+      document.getElementById("second").style.transform = `rotate(${seconds*6}deg)`;
+      document.getElementById("minute").style.transform = `rotate(${minutes*6 + seconds*0.1}deg)`;
+      document.getElementById("hour").style.transform = `rotate(${hours*30 + minutes*0.5}deg)`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Timer
+    let timerInterval, timerSeconds = 0;
+    function startTimer() {
+      if (!timerInterval) {
+        timerInterval = setInterval(() => {
+          timerSeconds++;
+          document.getElementById("timer").innerText = formatTime(timerSeconds);
+        }, 1000);
+      }
+    }
+    function stopTimer() {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+    function resetTimer() {
+      stopTimer();
+      timerSeconds = 0;
+      document.getElementById("timer").innerText = "00:00:00";
+    }
+
+    // Stopwatch
+    let stopwatchInterval, stopwatchSeconds = 0;
+    function startStopwatch() {
+      if (!stopwatchInterval) {
+        stopwatchInterval = setInterval(() => {
+          stopwatchSeconds++;
+          document.getElementById("stopwatch").innerText = formatTime(stopwatchSeconds);
+        }, 1000);
+      }
+    }
+    function stopStopwatch() {
+      clearInterval(stopwatchInterval);
+      stopwatchInterval = null;
+    }
+    function resetStopwatch() {
+      stopStopwatch();
+      stopwatchSeconds = 0;
+      document.getElementById("stopwatch").innerText = "00:00:00";
+    }
+
+    // Format Time
+    function formatTime(sec) {
+      let h = String(Math.floor(sec / 3600)).padStart(2, '0');
+      let m = String(Math.floor((sec % 3600) / 60)).padStart(2, '0');
+      let s = String(sec % 60).padStart(2, '0');
+      return `${h}:${m}:${s}`;
+    }
+
+    // Motivational Quotes Auto-Changer
+    const quotes = [
+      "“Time is life, don’t waste it!”",
+      "“Every second is a chance to change your life.”",
+      "“Discipline is the bridge between goals and success.”",
+      "“Your time is limited, use it wisely.”",
+      "“Small efforts daily create big results.”"
+    ];
+    let qIndex = 0;
+    setInterval(() => {
+      qIndex = (qIndex + 1) % quotes.length;
+      document.getElementById("quote").innerText = quotes[qIndex];
+    }, 30000);
+  </script>
+</body>
+</html>
